@@ -18,6 +18,7 @@ pip install flask
 * 服务器ssh key无密码
 * ln 软连接本地配置文件
 * 数据库连接的登录
+* ORM
 * log日志文件代替输出
 * 密码md5 -> 加盐md5
 * 上传
