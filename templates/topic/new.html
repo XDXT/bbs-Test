@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>new 1.2 topic</title>
+    <meta name="author" content="">
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/lib/ckeditor/css/sample.css"  media="screen" />
+    <script type="text/javascript" src="/static/lib/ckeditor/ckeditor.js"></script>
+</head>
+<body>
+    <div class="header centered">
+      <h3 style="color: #ff0000;">Tip: {{ tip }}</h3>
+    </div>
+    <div class="centered">
+      <form action="{{ url_for('.add') }}"  method="post" enctype=multipart/form-data>
+        <textarea autofocus class='span9' id='title' name='title' rows='1' placeholder="标题字数 10 字以上"></textarea>
+        <br>
+        <span class="tab-selector">选择版块：</span>
+        <select name="theme_id" id="board" required>
+            <option value="">请选择</option>
+                {% for b in bs %}
+                <option value="{{ b.id }}">{{ b.name }}</option>
+                {% endfor %}
+        </select>
+
+        <div class="topic_banner">
+          <h3>topic 封面：</h3>
+          <input type=file name='file'>
+        </div>
+
+        <textarea name="content" id="editor">
+          &lt;h2&gt;以下是一个简单的使用例子&lt;/h2&gt;
+
+          &lt;h3&gt;你从旅行中学到的三件最伟大的事情&lt;/h3&gt;
+
+          &lt;p&gt;  就像地球上所有伟大的事物一样，旅行是以身作则的。以下是我多年旅行中学到的最宝贵的经验。&lt;/p&gt;
+
+          &lt;h3&gt;多样性欣赏&lt;/h3&gt;
+
+          &lt;p&gt;适应一种完全不同的文化是一项挑战。虽然在网上或从书中了解文化也是一件好事，但没有什么比体验更接近的了。 <a href="https://en.wikipedia.org/wiki/Cultural_diversity">文化多样性</a> 亲自。当你变得更具文化流动性时，你学会欣赏每一种差异。&lt;/p&gt;
+
+          &lt;figure class="image image-style-side"&gt;&lt;img src="http://nuclearcat.xyz/topic/uploads/3b402572fd1d48c49cc0441efb73b442_umbrellas.jpg" alt="Three Monks walking on ancient temple."&gt;
+            &lt;figcaption&gt;离开你的舒适区可能会让你看到这样美丽的景色&lt;/figcaption&gt;
+          &lt;/figure&gt;
+
+          &lt;h3&gt;信心&lt;/h3&gt;
+
+          &lt;p&gt;去一个新的地方会很可怕。当变化和不确定性使我们害怕时，旅行教会我们在事情发生之前害怕是多么荒谬。当你面对你的恐惧，看到没有什么可以害怕的时候，就是你发现幸福的那一刻。&lt;/p&gt;
+        </textarea>
+        <p><button class='span-primary submit_btn' type="submit">提交</button></p>
+      </form>
+    </div>
+
+    <script src="/static/lib/ckeditor/ckinit.js"></script>
+</body>
+</html>

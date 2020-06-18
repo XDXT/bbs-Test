@@ -1,0 +1,36 @@
+@keyframes afastr {
+  0% {
+    opacity: 0;
+    transform: translate(0,-60px);
+  }
+
+  67% {
+      opacity: 1;
+      transform: translate(0,0);
+  }
+  86% {
+      opacity: 1;
+      transform: translate(0,-2px);
+  }
+  100% {
+      opacity: 1;
+      transform: translate(0,0);
+  }
+}
+
+@keyframes pop
+0% {
+    opacity: 0;
+    transform: scale(0.2);
+    -ms-transform: scale(0.2);
+}
+60% {
+    opacity: 0.75;
+    transform: scale(1.1);
+    -ms-transform: scale(1.1);
+}
+100% {
+    opacity: 1;
+    transform: scale(1);
+    -ms-transform: scale(1);
+}

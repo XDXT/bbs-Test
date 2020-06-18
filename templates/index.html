@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8">
+    <title>Nuclear Cat Nav </title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/common.css">
+    <link rel="stylesheet" href="/static/css/index.css">
+  </head>
+  <body>
+    <div class="frame-shake centered">
+      <div class="frame-turn">
+        <div class="frame shadow">
+          <li class="choose_card shadow" title="公告页面" >
+            <a href="#" class="card_hover">
+              <div class="card_hover_font" style="color: #4E9BFC;">最新公告</div>
+            </a>
+            <a href="#" class="card_img" style="background-image: url('/static/img/card_bg.jpg');"></a>
+          </li>
+
+          <li class="choose_card shadow" title="注册/登录页">
+            <a target="_blank" href="#">
+              <div class="card_hover_font" style="color: #DB5705;">注册/登录</div>
+            </a>
+            <a target="_blank" href="{{ url_for('.login_page') }}" class="card_img" style="background-image: url('/static/img/card_bg.jpg');"></a>
+          </li>
+
+          <li class="choose_card shadow" title="实验测试页">
+            <a href="#">
+              <div class="card_hover_font" style="color: #DB5705;">测试区</div>
+            </a>
+            <a target="_blank" href="{{ url_for('.testpart') }}" class="card_img" style="background-image: url('/static/img/card_bg.jpg');"></a>
+          </li>
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

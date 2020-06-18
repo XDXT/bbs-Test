@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Banner edit</title>
+  </head>
+  <body>
+    <h2>Board Part</h2>
+    <div class="div-board cell-list">
+        {% for b in bs %}
+        <div class="cell">
+            <div class="board_wrapper">
+              <div class="board-content">
+                id: {{ b.id }} || name: {{ b.name }}
+                <a href="{{ url_for('board.delete', id=b.id, token=token) }}">
+                    删除
+                </a>
+              </div>
+              <div class="board-update">
+                <form action="{{ url_for('board.update', token=token) }}" method="post" enctype=multipart/form-data>
+                  <input type="hidden" name="id" value="{{ b.id }}" >
+                  <input type="text" name="name"  placeholder="board name">
+                  <button type="submit">更新</button>
+                </form>
+              </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <h2>Theme Part</h2>
+    <div class="div-theme cell-list">
+        {% for t in ts %}
+        <div class="cell">
+            <div class="theme_wrapper">
+              <div class="theme-content">
+                id: {{ t.id }} || name: {{ t.name }}
+                <a href="{{ url_for('theme.delete', id=t.id, token=token) }}">
+                    删除
+                </a>
+              </div>
+                <div class="theme-update">
+                  <form action="{{ url_for('theme.update', token=token) }}" method="post" enctype=multipart/form-data>
+                    <input type="hidden" name="id" value="{{ t.id }}" >
+                    <input type="text" name="name"  placeholder="theme name">
+                    <button type="submit">更新</button>
+                  </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+  </body>
+</html>

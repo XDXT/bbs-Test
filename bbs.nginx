@@ -1,0 +1,7 @@
+server {
+    listen 80;
+    location / {
+        add_header 'Access-Control-Allow-Origin' 'http://www.nuclearcat.xyz';
+        proxy_pass http://localhost:2000;
+    }
+}

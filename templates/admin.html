@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head> 
+  <body>
+    <div class="edit-notice">
+      <h3>edit announce</h3>
+      <a href="{{ url_for('.new_notice') }}">start</a>
+    </div>
+
+    <div class="edit-user">
+      <h3>edit user</h3>
+      <a href="#">start</a>
+    </div>
+
+    <div class="edit-board">
+      <h3>create board</h3>
+      <a href="{{ url_for('board.new') }}">start</a>
+      <h3>edit board</h3>
+      <a href="{{ url_for('board.edit') }}">start</a>
+    </div>
+  </body>
+</html>

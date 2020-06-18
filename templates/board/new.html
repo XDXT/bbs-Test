@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>board edit</title>
+  </head>
+  <body>
+    <h3 style="color: #ff0000;">Tip: {{ tip }}</h3>
+    <div class="forum-edit">
+      <div class="forum-board">
+        <h3>Board Edit</h3>
+        <form action="{{ url_for('board.add') }}" method="post">
+          <input type="text" name="name">
+          <button type="submit">add</button>
+        </form>
+      </div>
+      <br><br>
+      <div class="forum-theme">
+        <h3>Theme Edit</h3>
+        <form action="{{ url_for('theme.add') }}" method="post" enctype=multipart/form-data>
+          <span >选择版块：</span>
+          <select name="board_id" required>
+              <option value="">请选择</option>
+                  {% for b in bs %}
+                  <option value="{{ b.id }}">{{ b.name }}</option>
+                  {% endfor %}
+          </select>
+          <br>
+          选择封面：<input type=file name=file>
+          <br>
+          <input type="text" name="name" placeholder="theme name">
+          <br>
+          <input type="submit" value="SUBMIT">
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

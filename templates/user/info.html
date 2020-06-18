@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>profile</title>
+</head>
+<body>
+    <h1>用户资料页面</h1>
+    <h3>头像</h3>
+    <img src="{{  url_for('.downloads', filename=user.user_image) }}" alt="user_image" width="200px">
+    <div>
+      id:  {{ user.id }}
+    </div>
+    <div>
+      name:  {{ user.name }}
+    </div>
+
+    <div>
+      passwd:  {{ user.password }}
+    </div>
+    <h4>上传/替换头像</h4>
+    <form method=post action={{ url_for(".add_img") }} enctype=multipart/form-data>
+         <input type=file name=file>
+         <input type=submit value='上传'>
+    </form>
+
+</body>
+</html>

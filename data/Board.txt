@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "最新音乐 The latest music",
+    "type": "Board",
+    "ct": 1549708834,
+    "ut": 1549708834,
+    "banner_img": "default.png"
+  },
+  {
+    "id": 2,
+    "name": "动画",
+    "type": "Board",
+    "ct": 1549708895,
+    "ut": 1549708895,
+    "banner_img": "default.png"
+  },
+  {
+    "id": 3,
+    "name": "书籍",
+    "type": "Board",
+    "ct": 1549708904,
+    "ut": 1549708904,
+    "banner_img": "default.png"
+  }
+]

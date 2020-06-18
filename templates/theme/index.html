@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <title>核弹喵的小窝1.0</title>
+  <link rel="stylesheet" href="/static/css/theme.css">
+  <link rel="stylesheet" href="/static/css/common.css">
+  <link rel="stylesheet" href="/static/css/theme_animation.css">
+</head>
+
+<body>
+  <div class="header">
+    <!-- 导航栏-也许其他 -->
+    <div class="topdb">
+      <div class="nu-nav">
+        <ul class="nav-ul">
+          <li>
+            <a href="/">小窝主页</a>
+          </li>
+          <li>
+            <a href="/theme">核喵主页</a>
+          </li>
+          <li>
+            <a href="/theme">其他玩意</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- banner/公告 -->
+    <div class="nu-banner">
+      <div class="banner-bg"></div>
+    </div>
+  </div>
+  <div class="boddy">
+    <!-- 左边部分 -->
+    <div class="boddy-left">
+      <!-- 切换栏 -->
+      <div class="nu-slide">
+        <div class="pick_timer" style="top: 246px; left: 423px;">
+          <div class="timer_overlay"></div>
+          <canvas width="22" height="22"></canvas>
+        </div>
+        <div class="pick_silde">
+        </div>
+        <div class="pick_controls">
+          <div class="control_holder">
+            <div class="pick_mainpanel">
+              <div class="pick_iebg">
+                <ul class="pick_slide_btns">
+                  <li><a href="#" id="0" class="">1</a></li>
+                  <li><a href="#" id="1" class="">1</a></li>
+                  <li><a href="#" id="2" class="active_slide">1</a></li>
+                  <li><a href="#" id="3" class="">1</a></li>
+                  <li><a href="#" id="4" class="">1</a></li>
+                  <li><a href="#" id="5" class="">1</a></li>
+                </ul>
+
+                <div class="pick_arrows">
+                  <a class="pick_prev" href="#">p</a>
+                  <a class="pick_next" href="#">n</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 主题版区 -->
+      <div class="nu-theme">
+        <!-- 顶部方块主题版 -->
+        <div class="top-theme">
+          <div class="theme-name">———— {{ te_top[0].name }} ————</div>
+          <div class="theme-content">
+            <!-- theme-div多个 -->
+            {% for tp in te_top[1] %}
+            <a class="theme-div" href="{{ url_for('theme.detail', id_page=tp.id) }}">
+              <div class="div-img">
+                <img src="{{  url_for('.downloads', filename=tp.banner_img) }}" alt="banner_img">
+              </div>
+              <div class="div-title">{{ tp.name }}</div>
+            </a>
+            {% endfor %}
+          </div>
+        </div>
+        <!-- 中间横条主题版 -->
+        <!-- theme-part center-theme多个 -->
+        <div class="center-theme fl bm">
+          {% for tc in te_centers %}
+          <div class="bm bmw cl">
+            <div class="bm_h cl">
+              <span class="o"></span>
+              <h2>{{ tc[0].name }}</h2>
+            </div>
+            <div class="bm_c mshadow">
+              <!-- theme-div多个 -->
+              <table cellspacing="0" cellpadding="0" class="fl_tb">
+                <tbody>
+                  {% for t in tc[1] %}
+                  <tr>
+                    <td class="fl_icn" style="width: 180px;">
+                      <a href="{{ url_for('theme.detail', id_page=t.id) }}">
+                        <img src="{{  url_for('theme.downloads', filename=t.banner_img) }}" align="left" alt="banner_img">
+                      </a>
+                    </td>
+
+                    <td class="fl_h">
+                      <h2><a href="{{ url_for('theme.detail', id_page=t.id) }}">{{ t.name }}</a></h2>
+                      <p>版主:
+                        <span class="xi2">
+                          <a href="#" class="notabs" c="1" mid="card_6017">AAA</a>,
+                          <a href="#" class="notabs" c="1" mid="card_3093">BBB</a>
+                        </span>
+                      </p>
+                    </td>
+
+                    <td class="fl_i">
+                      <span class="xi2">2863</span><span> / 5661</span>
+                    </td>
+
+                    <td class="fl_by">
+                      <div>
+                        <a href="#" class="xi2">最新topic ...</a>
+                        <cite>2018-9-22 21:03 <a href="#">upload user</a></cite>
+                      </div>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <!-- 右边部分 -->
+    <div class="boddy-right">
+      <div class=""></div>
+    </div>
+  </div>
+  <div class="foott">
+    <div class="friend-website"></div>
+    <hr>
+    <div class="website-info"></div>
+  </div>
+</body>
+
+</html>

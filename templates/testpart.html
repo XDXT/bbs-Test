@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CKEditor 5 – Classic editor</title>
+    <!-- <link rel="stylesheet/css" href="/static/lib/ckeditor/testpart.less"> -->
+    <script type="text/javascript" src="/static/lib/ckeditor/ckeditor.js"></script>
+    <!-- <script src="https://cdn.ckeditor.com/ckeditor5/11.2.0/classic/ckeditor.js"></script> -->
+</head>
+<body>
+    <h3 style="color: #ff0000;">Tip: {{ tip }}</h3>
+    <h1>Classic editor</h1>
+    <form action="[URL]" method="post">
+        <textarea name="content" id="editor">
+            &lt;p&gt;This is some sample content.&lt;/p&gt;
+        </textarea>
+        <p><input type="submit" value="Submit"></p>
+    </form>
+    <script src="/static/lib/ckeditor/ckconfig.js"></script>
+</body>
+</html>

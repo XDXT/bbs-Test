@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8">
+    <title>theme detail</title>
+    <link rel="stylesheet" href="/static/css/common.css">
+    <link rel="stylesheet" href="/static/css/theme.css">
+    <link rel="stylesheet" href="/static/css/theme_animation.css">
+    <link rel="stylesheet" href="/static/css/theme_detail.css">
+  </head>
+  
+  <body>
+    <div class="header">
+      <div class="topdb">
+        <div class="nu-nav">
+          <ul class="nav-ul">
+            <li><a href="/">小窝主页</a></li>
+            <li><a href="/theme">核喵主页</a></li>
+            <li><a href="/theme">其他玩意</a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- banner名称 -->
+      <div class="nu-banner">
+        <div class="banner-bg"></div>
+      </div>
+    </div>
+    <div class="boddy">
+      <div class="theme-name">
+        —— {{ theme.name }} ——
+      </div>
+      <div class="add_topic">
+        <a href="{{ url_for('topic.new') }}">add topic【测试】</a>
+      </div>
+
+      <div class="all-square">
+        <ul class="cl">
+          {% for t in tps %}
+          <li class="square-style mshadow">
+            <a class="square-img" href="{{ url_for('topic.detail', id=t.id) }}">
+              <img src=" {{ url_for('topic.downloads', filename=t.banner_img) }} " alt="topic_img">
+            </a>
+            <h3 class="square-title">{{ t.title }}</h3>
+            <div class="square-auth">
+              <a href="#">用户id： {{ t.user_id }}</a>
+              <cite class="square-comment">喜欢: 0   回复: 0</cite>
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+
+      </div>
+    </div>
+  </body>
+</html>

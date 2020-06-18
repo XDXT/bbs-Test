@@ -1,0 +1,14 @@
+gua.log.txt
+todu.txt
+*.pyc
+log.bbs.txt
+data/Theme.txt
+static/lib/bootstrap/js/
+static/lib/bootstrap/less/
+static/lib/ckeditor/ckeditor.js.map
+static/lib/ckeditor/img
+static/lib/editor/
+static/lib/less-1.2.2.min.js
+templates/testpart2.html
+*.gif
+static/css/theme_part.css
