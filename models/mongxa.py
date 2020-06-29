@@ -119,31 +119,19 @@ class Mongxa(object):
                 # 设置默认值
                 setattr(m, k, v)
         setattr(m, '_id', bson['_id'])
-        # 这一句必不可少，否则 bson 生成一个新的_id
-        # FIXME, 因为现在的数据库里面未必有 type
-        # 所以在这里强行加上
-        # 以后洗掉db的数据后应该删掉这一句
-        # m.type = cls.__name__.lower()
         return m
 
     @classmethod
     def all(cls):
         # 按照 id 升序排序
-        # name = cls.__name__
-        # ds = monga.db[name].find()
-        # l = [cls._new_with_bson(d) for d in ds]
-        # return l
         return cls._find()
 
-    # TODO, 还应该有一个函数 find(name, **kwargs)
     @classmethod
     def _find(cls, **kwargs):
         """
         mongo 数据查询
         """
         name = cls.__name__
-        # TODO 过滤掉被删除的元素
-        # kwargs['deleted'] = False
         flag_sort = '__sort'
         sort = kwargs.pop(flag_sort, None)
         ds = monga.db[name].find(kwargs)
@@ -158,9 +146,6 @@ class Mongxa(object):
         ds = monga.db[name]._find(kwargs)
         l = [d for d in ds]
         return l
-        # 直接 list() 就好了
-        # l = monga.db[name]._find(kwargs)
-        # return list(l)
 
     @classmethod
     def _clean_field(cls, source, target):
@@ -193,10 +178,6 @@ class Mongxa(object):
 
     @classmethod
     def find_one(cls, **kwargs):
-        """
-        """
-        # TODO 过滤掉被删除的元素
-        # kwargs['deleted'] = False
         l = cls._find(**kwargs)
         if len(l) > 0:
             return l[0]
@@ -217,7 +198,6 @@ class Mongxa(object):
         for k, v in form.items():
             if hard or hasattr(self, k):
                 setattr(self, k, v)
-        # self.updated_time = timestamp() fixme
         self.save()
 
     def save(self):
@@ -229,10 +209,10 @@ class Mongxa(object):
         query = {
             'id': self.id,
         }
+        # 多设一个deleted属性代替真实删除
         # values = {
         #     'deleted': True
         # }
-
         # # self.deleted = True
         # # self.save()
         # monga.db[name].update_one(query, values)
@@ -248,24 +228,20 @@ class Mongxa(object):
     def json(self):
         _dict = self.__dict__
         d = {k: v for k, v in _dict.items() if k not in self.blacklist()}
-        # TODO, 增加一个 type 属性
         return d
 
     def part_json(self, *args):
         _dict = self.__dict__
         d = {k: v for k, v in _dict.items() if k not in self.blacklist() and k in args}
-        # TODO, 增加一个 type 属性
         return d
 
     def data_count(self, cls):
         """
-        神奇的函数, 查看用户发表的评论数
+        查看用户发表的评论数
         u.data_count(Comment)
-
         :return: int
         """
         name = cls.__name__
-        # TODO, 这里应该用 type 替代
         fk = '{}_id'.format(self.__class__.__name__.lower())
         query = {
             fk: self.id,

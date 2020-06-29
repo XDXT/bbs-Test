@@ -10,14 +10,13 @@ def save(data, path):
     """
     s = json.dumps(data, indent=2, ensure_ascii=False)
     with open(path, 'w+', encoding='utf-8') as f:
-        # log('save', path, s, data)
+        log('save', path, s, data)
         f.write(s)
 
 
 def load(path):
     with open(path, 'r', encoding='utf-8') as f:
         s = f.read()
-        # log('load', s)
         return json.loads(s)
 
 
@@ -25,31 +24,28 @@ def load(path):
 class Model(object):
     """
     Model 是所有 model 的基类
-    @classmethod 是一个套路用法
-    例如
-    user = User()
-    user.db_path() 返回 User.txt
     """
+
     @classmethod
     def db_path(cls):
         """
-        cls 是类名, 谁调用的类名就是谁的
-        classmethod 有一个参数是 class(这里我们用 cls 这个名字)
-        所以我们可以得到 class 的名字
+        @classmethod 类似 @staticmethod，都表示类方法
+        区别:@classmethod传参cls代替调用者类名(class)
+        @staticmethod不传参，直接  类名.xx 使用
         """
+        classname = cls.__name__
+        path = r'data/{}.txt'.format(classname)
+        return path
         classname = cls.__name__
         path = r'data/{}.txt'.format(classname)
         return path
 
     @classmethod
     def _new_from_dict(cls, d):
-        # 因为子元素的 __init__ 需要一个 form 参数
-        # 所以这个给一个空字典
+        # 初始化一个子类存数据
         m = cls({})
         for k, v in d.items():
-            # setattr 是一个特殊的函数
-            # 假设 k v 分别是 'name'  'gua'
-            # 它相当于 m.name = 'gua'
+            # setattr 当于 m.name = 'gua'
             setattr(m, k, v)
         return m
 
@@ -58,7 +54,7 @@ class Model(object):
         m = cls(form)
         # 额外地设置 m 的属性
         for k, v in kwargs.items():
-            # 这是一个神奇的函数, 可以设置对象的属性
+            # 设置对象的属性
             setattr(m, k, v)
         m.save()
         return m
@@ -66,13 +62,12 @@ class Model(object):
     @classmethod
     def all(cls):
         """
-        all 方法(类里面的函数叫方法)使用 load 函数得到所有的 models
+        all 方法，使用 load 函数得到所有的 models
         """
         path = cls.db_path()
+        # 从存储的数据文件 中加载所有的数据
         models = load(path)
-        # 这里用了列表推导生成一个包含所有 实例 的 list
-        # 因为这里是从 存储的数据文件 中加载所有的数据
-        # 所以用 _new_from_dict 这个特殊的函数来初始化一个数据
+        #  _new_from_dict 数据初始化为对象数据
         ms = [cls._new_from_dict(m) for m in models]
         return ms
 
@@ -93,8 +88,8 @@ class Model(object):
     @classmethod
     def find_by(cls, **kwargs):
         """
-        用法如下，kwargs 是只有一个元素的 dict
-        u = User.find_by(username='gua')
+        kwargs 是只有一个元素的 dict
+        e.g. u = User.find_by(username='name', age=10)
         """
         k, v = '', ''
         for key, value in kwargs.items():
@@ -124,7 +119,7 @@ class Model(object):
                 break
         # 判断是否找到了这个 id 的数据
         if index == -1:
-            # 没找到
+            # 没找到,预留操作
             pass
         else:
             obj = models.pop(index)
@@ -157,19 +152,15 @@ class Model(object):
         用 all 方法读取文件中的所有 model 并生成一个 list
         把 self 添加进去并且保存进文件
         """
-        # log('debug save')
         models = self.all()
-        # log('models', models)
-        # 如果没有 id，说明是新添加的元素
+        #  id不存在，是新的元素
         if self.id is None:
             # 设置 self.id
-            # 先看看是否是空 list
             if len(models) == 0:
-                # 我们让第一个元素的 id 为 1（当然也可以为 0）
+                # 第一个元素的 id 为 1
                 self.id = 1
             else:
                 m = models[-1]
-                # log('m', m)
                 self.id = m.id + 1
             models.append(self)
         else:
